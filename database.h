@@ -8,6 +8,7 @@
 #include <QSqlTableModel>
 #include <QSqlRecord>
 #include <QList>
+#include <QFile>
 
 class DataBase_cell{
 private:
@@ -28,13 +29,13 @@ class DataBase
 {
 private:
     QString db_threat;
-    QString get_headerType(DataBase_cell *cell);
     bool isThereValidValue(QList<DataBase_cell *> c_list);
 public:
     QSqlDatabase sqldb;
 
     DataBase();
     void connectToLocalDataBase(QString db_threat, QString db_name, QString db_log, QString db_pass);
+    QString getInformation(QString db, QString table, QString name, QString mark);
     bool isThereValueInBase(QString val, QString col);
     bool setInformation(QList<DataBase_cell *> c_list);
     bool deleteInformation();

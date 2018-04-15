@@ -1,11 +1,19 @@
 #include "loginwindow.h"
+#include "file.h"
 #include <QApplication>
 
-int main(int argc, char *argv[])
-{
+void init_app();
+
+int main(int argc, char *argv[]){
     QApplication a(argc, argv);
-    LogInWindow *w = new LogInWindow;
-    w->show();
+    init_app();
 
     return a.exec();
+}
+
+void init_app(){
+    Q
+
+    LogInWindow *w = new LogInWindow;
+    w->show();
 }

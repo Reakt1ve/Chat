@@ -3,6 +3,7 @@
 #include "database.h"
 #include "mainwindow.h"
 #include "massageerror.h"
+#include "user.h"
 
 RegistrationWindow::RegistrationWindow(QWidget *parent) :
     QDialog(parent),
@@ -36,15 +37,16 @@ void RegistrationWindow::on_confirmRegPushButton_clicked(){
         cell_2->set_value(ui->regPassLineEdit->text());
         c_list.append(cell_2);
 
-        // Можно оптимизовать, если написать скрипт, который сравнивает первые буквы имени с буквами значения после
-        // reg. (Чуть позже оптимизирую, пока так)
-
         if(db->setInformation(c_list) == true){
-            delete db;
+            User *usr = new User;
+            usr->load_info(ui->regLoginLineEdit->text());
 
-            MainWindow *mw = new MainWindow;
             this->close();
+            MainWindow *mw = new MainWindow(usr);
             mw->show();
+
+            delete db;
+            delete usr;
         }else{
             delete db;
             MassageError *msg = new MassageError(2);

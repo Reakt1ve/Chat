@@ -21,14 +21,20 @@ LogInWindow::~LogInWindow(){
 void LogInWindow::on_logInPushButton_clicked(){
     DataBase *db = new DataBase;
     db->connectToLocalDataBase("main_threat", "chat", "root", "root");
-    if((db->isThereValueInBase(ui->logLineEdit->text(), "login") && db->isThereValueInBase(ui->passwordLineEdit->text(), "password")) == true){
-        delete db;
-        MainWindow *mw = new MainWindow;
+
+    if((db->isThereValueInBase(ui->logLineEdit->text(), "login") && db->isThereValueInBase(ui->passwordLineEdit->text(), "password")) == true){        
+        User *usr = new User;
+        usr->load_info(ui->logLineEdit->text());
+
+        MainWindow *mw = new MainWindow(usr);
         this->close();
         mw->show();
-    }
-    else{
+
         delete db;
+        delete usr;
+    }else{
+        delete db;
+
         MassageError *msg = new MassageError(0);
         msg->show();
         return;

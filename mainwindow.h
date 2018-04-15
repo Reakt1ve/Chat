@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "user.h"
 
 namespace Ui {
 class MainWindow;
@@ -12,7 +13,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(User *user_info, QWidget *parent = 0);
+    void setUserInformation(User *user_info);
     ~MainWindow();
 
 private slots:

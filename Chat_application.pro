@@ -28,13 +28,19 @@ SOURCES += main.cpp\
     loginwindow.cpp \
     registrationwindow.cpp \
     database.cpp \
-    massageerror.cpp
+    massageerror.cpp \
+    user.cpp \
+    network.cpp \
+    file.cpp
 
 HEADERS  += mainwindow.h \
     loginwindow.h \
     registrationwindow.h \
     database.h \
-    massageerror.h
+    massageerror.h \
+    user.h \
+    network.h \
+    file.h
 
 FORMS    += mainwindow.ui \
     loginwindow.ui \

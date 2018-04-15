@@ -1,4 +1,5 @@
 #include "massageerror.h"
+#include "QDebug"
 
 MassageError::MassageError(int msg){
     this->num_msg = msg;
@@ -29,6 +30,9 @@ void MassageError::show(){
             msg_3->setStandardButtons(QMessageBox::Cancel);
             msg_3->exec();
             break;
+        }
+        default:{
+            qDebug() << "Введено неправильное значение. Повторите попытку!";
         }
 
         //

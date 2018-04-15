@@ -16,8 +16,28 @@ void DataBase::connectToLocalDataBase(QString db_threat, QString db_name, QStrin
     if(!sqldb.open()) qDebug() << sqldb.lastError().databaseText();
 }
 
+QString DataBase::getInformation(QString db, QString table, QString mark, QString name = " "){
+    if(name == " ") name = mark;
+    DataBase *getInfoDataBase = new DataBase;
+    getInfoDataBase->connectToLocalDataBase("getInfoThreat",db,"root","root");
+    QSqlQuery *query = new QSqlQuery("SELECT * FROM" + table, getInfoDataBase->sqldb);
+    QString res;
+
+    while(query->next()){
+        if(mark == query->value(query->record().indexOf(mark))){
+            res = query->value(query->record().indexOf(name)).toString();
+            break;
+        }
+    }
+
+    delete query;
+    delete getInfoDataBase;
+
+    return res;
+}
+
 bool DataBase::isThereValueInBase(QString val, QString col){
-    QSqlQuery *query = new QSqlQuery("SELECT * FROM users",sqldb);
+    QSqlQuery *query = new QSqlQuery("SELECT * FROM users", this->sqldb);
     while(query->next()){
         if(val == query->value(query->record().indexOf(col))) return 1;
     }
@@ -29,7 +49,7 @@ bool DataBase::isThereValueInBase(QString val, QString col){
 bool DataBase::setInformation(QList<DataBase_cell*>c_list){
     if(this->isThereValidValue(c_list) == true){
         for(int i = 0; i < c_list.size(); i++){
-            c_list[i]->set_type(this->get_headerType(c_list[i]));
+            c_list[i]->set_type(this->getInformation("information_schema","COLUMNS",c_list[i]->get_name(),"DATA_TYPE"));
         }
 
         QString query_val;
@@ -67,23 +87,6 @@ bool DataBase::deleteInformation(){
 
 bool DataBase::updateInformation(){
 
-}
-
-QString DataBase::get_headerType(DataBase_cell *cell){
-    DataBase *side_db = new DataBase;
-    side_db->connectToLocalDataBase("side_threat", "information_schema", "root", "root");
-    QSqlQuery *query = new QSqlQuery("SELECT * FROM COLUMNS",side_db->sqldb);
-    QString type;
-    while(query->next()){
-        if(cell->get_name() == query->value(query->record().indexOf("COLUMN_NAME"))){
-            type = query->value(query->record().indexOf("DATA_TYPE")).toString();
-            break;
-        }
-    }
-
-    delete query;
-    delete side_db;
-    return type;
 }
 
 bool DataBase::isThereValidValue(QList<DataBase_cell*>c_list){

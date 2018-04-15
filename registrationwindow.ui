@@ -73,7 +73,7 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>Повтоения пароля</string>
+           <string>Повтор пароля</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
