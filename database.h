@@ -5,7 +5,7 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <QSqlError>
-#include <QSqlTableModel>
+#include <QSqlDriver>
 #include <QSqlRecord>
 #include <QList>
 #include <QFile>
@@ -20,6 +20,7 @@ public:
     void set_name(QString name);
     void set_value(QString value);
     void set_type(QString type);
+
     QString get_name();
     QString get_value();
     QString get_type();

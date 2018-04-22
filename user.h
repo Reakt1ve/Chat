@@ -15,6 +15,7 @@ public:
     void set_date(QString date);
     void set_time(QString time);
     void set_text(QString text);
+
     QDate get_date();
     QTime get_time();
     QString get_text();
@@ -25,6 +26,8 @@ private:
     User_message *msg_list;
     int mList_size;
     QString login;
+    QString conf_IP;
+
     void set_log(QString log);
     void set_message();
 public:

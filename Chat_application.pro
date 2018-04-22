@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     massageerror.cpp \
     user.cpp \
     network.cpp \
-    file.cpp
+    file.cpp \
+    sys.cpp
 
 HEADERS  += mainwindow.h \
     loginwindow.h \
@@ -40,7 +41,8 @@ HEADERS  += mainwindow.h \
     massageerror.h \
     user.h \
     network.h \
-    file.h
+    file.h \
+    sys.h
 
 FORMS    += mainwindow.ui \
     loginwindow.ui \

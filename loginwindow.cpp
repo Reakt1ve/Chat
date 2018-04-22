@@ -33,10 +33,10 @@ void LogInWindow::on_logInPushButton_clicked(){
         delete db;
         delete usr;
     }else{
-        delete db;
-
         MassageError *msg = new MassageError(0);
         msg->show();
+        delete db;
+
         return;
     }
 }

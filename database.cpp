@@ -1,19 +1,23 @@
 #include "database.h"
+#include "sys.h"
 
 DataBase::DataBase(){}
 
 void DataBase::connectToLocalDataBase(QString db_threat, QString db_name, QString db_log, QString db_pass){
     this->db_threat = db_threat;
 
-    sqldb = QSqlDatabase::database(db_threat);
-    sqldb = QSqlDatabase::addDatabase("QMYSQL", db_threat);
+    this->sqldb = QSqlDatabase::database(db_threat);
+    this->sqldb = QSqlDatabase::addDatabase("QMYSQL", db_threat);
 
-    sqldb.setDatabaseName(db_name);
-    sqldb.setHostName("127.0.0.1");
-    sqldb.setUserName(db_log);
-    sqldb.setPassword(db_pass);
+    Environment *env = new Environment;
+    this->sqldb.setDatabaseName(db_name);
+    this->sqldb.setHostName(env->get_host_ip());
+    this->sqldb.setPort(env->get_port());
+    this->sqldb.setUserName(db_log);
+    this->sqldb.setPassword(db_pass);
 
-    if(!sqldb.open()) qDebug() << sqldb.lastError().databaseText();
+    if(!this->sqldb.open()) qDebug() << this->sqldb.lastError().databaseText();
+    delete env;
 }
 
 QString DataBase::getInformation(QString db, QString table, QString mark, QString name = " "){

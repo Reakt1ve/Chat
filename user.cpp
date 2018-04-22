@@ -1,5 +1,6 @@
 #include "user.h"
 #include "database.h"
+#include "file.h"
 
 User::User(){
     DataBase *db = new DataBase;
