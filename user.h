@@ -34,6 +34,7 @@ public:
     User();
     void load_info(QString user_log);
     QString get_log();
+    int get_list_size();
     User_message get_message(int id);
 };
 

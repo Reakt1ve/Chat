@@ -76,6 +76,10 @@ QTime User_message::get_time(){
     return this->time;
 }
 
+int User::get_list_size(){
+    return this->mList_size;
+}
+
 QString User_message::get_text(){
     return this->text;
 }
