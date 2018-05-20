@@ -11,14 +11,17 @@ private:
     QDate date;
     QTime time;
     QString text;
+    QString user;
 public:
     void set_date(QString date);
     void set_time(QString time);
     void set_text(QString text);
+    void set_user(QString user);
 
     QDate get_date();
     QTime get_time();
     QString get_text();
+    QString get_user();
 };
 
 class User{

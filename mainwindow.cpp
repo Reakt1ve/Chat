@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "massageerror.h"
+#include <QDebug>
 
 MainWindow::MainWindow(User *user_info, QWidget *parent) :
     QMainWindow(parent),
@@ -14,8 +15,8 @@ MainWindow::MainWindow(User *user_info, QWidget *parent) :
 
 void MainWindow::setUserInformation(User *user_info){
     ui->presentName->setText(user_info->get_log());
-
     // Акифон, отображение сообщения за тобой.
+
 }
 
 MainWindow::~MainWindow(){
